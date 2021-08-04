@@ -1,5 +1,7 @@
+# Backend
+
 # Byte-compiled / optimized / DLL files
-__pycache__/
+backend/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -8,20 +10,20 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
+backend/build/
+backend/develop-eggs/
+backend/dist/
+backend/downloads/
+backend/eggs/
+backend/.eggs/
+backend/lib/
+backend/lib64/
+backend/parts/
+backend/sdist/
+backend/var/
+backend/wheels/
+backend/pip-wheel-metadata/
+backend/share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -38,18 +40,18 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
+backend/htmlcov/
+backend/.tox/
+backend/.nox/
 .coverage
 .coverage.*
-.cache
+backend/.cache
 nosetests.xml
 coverage.xml
 *.cover
 *.py,cover
-.hypothesis/
-.pytest_cache/
+backend/.hypothesis/
+backend/.pytest_cache/
 
 # Translations
 *.mo
@@ -62,23 +64,23 @@ db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
-instance/
+backend/instance/
 .webassets-cache
 
 # Scrapy stuff:
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+backend/docs/_build/
 
 # PyBuilder
-target/
+backend/target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
 
 # IPython
-profile_default/
+backend/profile_default/
 ipython_config.py
 
 # pyenv
@@ -92,7 +94,7 @@ ipython_config.py
 #Pipfile.lock
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
+backend/__pypackages__/
 
 # Celery stuff
 celerybeat-schedule
@@ -104,11 +106,11 @@ celerybeat.pid
 # Environments
 .env
 .venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+backend/env/
+backend/venv/
+backend/ENV/
+backend/env.bak/
+backend/venv.bak/
 
 # Spyder project settings
 .spyderproject
@@ -118,12 +120,40 @@ venv.bak/
 .ropeproject
 
 # mkdocs documentation
-/site
+backend/site
 
 # mypy
-.mypy_cache/
+backend/.mypy_cache/
 .dmypy.json
 dmypy.json
 
 # Pyre type checker
-.pyre/
+backend/.pyre/
+
+# Frontend
+
+# dependencies
+frontend/node_modules
+frontend/.pnp
+.pnp.js
+
+# testing
+frontend/coverage
+
+# production
+frontend/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editors
+.idea/
+.vscode/
