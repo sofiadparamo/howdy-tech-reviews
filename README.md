@@ -19,4 +19,16 @@ This project was built for the MLH Fellowship Batch 3 on the Production Engineer
 - Run the server
   - ```npm start```
 
+### Backend
+- Locate the backend folder
+  - ```cd backend```
+- Create and activate a python virtual environment
+  - ```python -m venv venv```
+- Activate the virtual environment or use it to run install the dependencies
+  - ```pip install -r requirements.txt```
+- Run the server
+  - ```python wsgi.py```
+
 ## Contributing
+
+You can follow the guide and git workflow [here](.github/CONTRIBUTING.md).
