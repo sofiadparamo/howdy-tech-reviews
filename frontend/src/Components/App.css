@@ -1,0 +1,10 @@
+div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px
+}
