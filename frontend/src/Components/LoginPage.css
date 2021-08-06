@@ -1,0 +1,87 @@
+.login-page{
+    font-family: "Roboto", sans-serif;
+}
+
+.login-box{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 600px;
+    max-width: 350px;
+}
+
+.login-page .logo{
+    background-image: url(../logo.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: auto;
+    height: 100px;
+}
+
+.login-page .head-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 30px;
+    margin: 0 0 20px;
+}
+
+.login-page .head-container .line{
+    background-color: black;
+    height: 3px;
+    border-radius: 3px;
+    flex: 1 1 auto;
+    align-self: auto;
+}
+
+.login-page h1{
+    flex: 0 1 auto;
+    align-self: auto;
+    text-align: center;
+    font-size: 22px;
+    margin: 0 10px;
+}
+
+.login-page input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    border: groove 3px black;
+    padding: 21px;
+    border-radius: 19px;
+    font-size: 18px;
+    outline: none;
+    filter: drop-shadow(-4px 4px 4px rgba(0,0,0,0.25));
+    margin-bottom: 30px;
+}
+
+.login-page .valid{
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    border: 0;
+    font-size: 18px;
+    color: white;
+    border-radius: 19px;
+    filter: drop-shadow(-4px 4px 4px rgba(0,0,0,0.25));
+    background-color: #6E56FF;
+    cursor: pointer;
+}
+
+.login-page .invalid{
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    border: 0;
+    font-size: 18px;
+    color: white;
+    border-radius: 19px;
+    filter: drop-shadow(-4px 4px 4px rgba(0,0,0,0.25));
+    background-color: #b5a1ff;
+    cursor: not-allowed;
+}
