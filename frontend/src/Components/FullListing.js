@@ -9,8 +9,8 @@ const FullListing = () => (
     <ul>
       {
         ListingAPI.all().map(p => (
-          <li key={p.productName}>
-            <NavLink to={'/listing/${p.productName}'}>
+          <li key={p.id}>
+            <NavLink to={`/listing/${p.id}`}>
               <img src="https://via.placeholder.com/112" width="112" height="112"/>
               <div>
                 <h1>{p.productName}</h1>

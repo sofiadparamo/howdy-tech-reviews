@@ -1,12 +1,12 @@
 const ListingAPI = {
   listings: [
-    { productName: "iPhone", rating: 4 },
-    { productName: "Slack", rating: 3 },
-    { productName: "Arselan", rating: 5 }
+    { id: 1, productName: "iPhone", rating: 4 },
+    { id:2, productName: "Slack", rating: 3 },
+    { id:3, productName: "Arselan", rating: 5 }
   ],
   all: function() { return this.listings },
-  get: function(productName) {
-    const isListing = p => p.productName == productName
+  get: function(id) {
+    const isListing = p => p.id === id
     return this.listings.find(isListing)
   }
 }
