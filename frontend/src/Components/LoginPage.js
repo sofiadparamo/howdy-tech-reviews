@@ -51,25 +51,4 @@ class LoginPage extends React.Component{
     }
 }
 
-
-/*const LoginPage = () => (
-  <div className="login-page">
-    <div className="login-box">
-        <div className="logo"/>
-        <div className="head-container">
-            <div className="line"/>
-            <h1>Login</h1>
-            <div className="line"/>
-        </div>
-        <form>
-            <input type="text" id="email" name="email" placeholder="Email or username" onChange={onEmailChange}>
-            </input>
-            <input type="password" id="password" name="password" placeholder="Password" onChange={onPasswordChange}>
-            </input>
-            <button type="button" onClick={handleSubmit} className={classNameButton}>Enter</button>
-        </form>
-    </div>
-  </div>
-)*/
-
 export default LoginPage
