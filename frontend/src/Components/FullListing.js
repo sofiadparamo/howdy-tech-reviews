@@ -11,7 +11,7 @@ const FullListing = () => (
         ListingAPI.all().map(p => (
           <li key={p.id}>
             <NavLink to={`/listing/${p.id}`}>
-              <img src="https://via.placeholder.com/112" width="112" height="112"/>
+              <img src="https://via.placeholder.com/112" width="112" height="112" alt="Product"/>
               <div>
                 <h1>{p.productName}</h1>
                 <h2>Avg Rating: {p.rating}/5 stars</h2>
