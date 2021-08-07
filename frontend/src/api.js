@@ -1,3 +1,4 @@
+import axios from 'axios'
 /*
 const ListingAPI = {
   listings: [
@@ -17,16 +18,17 @@ const ListingAPI = {
 export default ListingAPI
 */
 
+const LISTING_API_URL = "http://localhost:5000/listings";
+
 class ListingAPI {
   constructor() {
-    this.state = {
-      listings: []
-    }
+    this.listings = axios.get(LISTING_API_URL);
   }
-
+ 
   all() {
-    ListingService.getListings().then( res => {
-      this.setState({ listings: this.state.listings });
-    });
+    return axios.get(LISTING_API_URL);
   }
 }
+
+const ListingsAPI = new ListingAPI();
+export default ListingsAPI
