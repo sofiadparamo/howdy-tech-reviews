@@ -10,6 +10,10 @@ class ListingAPI {
   all() {
     return axios.get(LISTING_API_URL);
   }
+
+  get(id) {
+    return axios.get(LISTING_API_URL + '/' + id);
+  }
 }
 
 const ListingsAPI = new ListingAPI();
