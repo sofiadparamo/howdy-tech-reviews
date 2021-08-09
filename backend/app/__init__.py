@@ -47,6 +47,20 @@ def data():
         print(dataJson)
         return jsonify(dataJson)
 
+@app.route('/listings/<string:id>', methods=['GET'])
+def oneItem(id):
+    if request.method == 'GET':
+        data = db['listings'].find_one({'_id': ObjectId(id)})
+        id = data['_id']
+        productName = data['productName']
+        rating = data['rating']
+        dataDict = {
+            'id': str(id),
+            'productName': productName,
+            'rating': rating
+        }
+        print(dataDict)
+        return jsonify(dataDict)
 
 @app.route('/')
 def index():
