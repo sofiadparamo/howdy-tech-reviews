@@ -47,7 +47,7 @@ def data():
         print(dataJson)
         return jsonify(dataJson)
 
-@app.route('/listings/<string:id>', methods=['GET'])
+@app.route('/listings/<string:id>', methods=['GET', 'DELETE'])
 def oneItem(id):
     if request.method == 'GET':
         data = db['listings'].find_one({'_id': ObjectId(id)})
@@ -61,6 +61,11 @@ def oneItem(id):
         }
         print(dataDict)
         return jsonify(dataDict)
+
+    if request.method == 'DELETE':
+        db['listings'].delete_many({'_id': ObjectId(id)})
+        print('\n# Deletion successful # \n')
+        return jsonify({'status': 'Data id: ' + id + ' is deleted!'})
 
 @app.route('/')
 def index():
