@@ -18,16 +18,19 @@ def data():
     if request.method == 'POST':
         body = request.json
         productName = body['productName']
+        productDescription = body['productDescription']
         rating = body['rating']
 
         db['listings'].insert_one({
             "productName": productName,
+            "productDescription": productDescription,
             "rating": rating
         })
 
         return jsonify({
             'status': 'Data is posted to MongoDB!',
             'productName': productName,
+            'productDescription': productDescription,
             'rating': rating
         })
 
@@ -37,10 +40,12 @@ def data():
         for data in allData:
             id = data['_id']
             productName = data['productName']
+            productDescription = data['productDescription']
             rating = data['rating']
             dataDict = {
                 'id': str(id),
                 'productName': productName,
+                'productDescription': productDescription,
                 'rating': rating
             }
             dataJson.append(dataDict)
@@ -53,10 +58,12 @@ def oneItem(id):
         data = db['listings'].find_one({'_id': ObjectId(id)})
         id = data['_id']
         productName = data['productName']
+        productDescription = data['productDescription']
         rating = data['rating']
         dataDict = {
             'id': str(id),
             'productName': productName,
+            'productDescription': productDescription,
             'rating': rating
         }
         print(dataDict)
