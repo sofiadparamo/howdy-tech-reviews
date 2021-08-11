@@ -36,5 +36,6 @@ class ListingAPI {
     });
   }
 }
+
 const ListingsAPI = new ListingAPI();
 export default ListingsAPI

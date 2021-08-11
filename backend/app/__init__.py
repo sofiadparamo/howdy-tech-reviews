@@ -52,6 +52,7 @@ def data():
         print(dataJson)
         return jsonify(dataJson)
 
+
 @app.route('/listings/<string:id>', methods=['GET', 'DELETE'])
 def oneItem(id):
     if request.method == 'GET':
