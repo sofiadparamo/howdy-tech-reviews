@@ -26,9 +26,9 @@ jobs:
           python-version: 3.9
 
       - name: Set up Node
-          uses: actions/setup-node@v1
-          with:
-            node-version: 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
 
       - name: Install Python dependencies
         run: pip install black flake8
