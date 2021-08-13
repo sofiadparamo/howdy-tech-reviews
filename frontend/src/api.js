@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const LISTING_API_URL = "http://localhost:5000/listings";
+const LISTING_API_URL = "/listings";
 
 class ListingAPI {
   all() {
@@ -20,7 +20,7 @@ class ListingAPI {
 
     var config = {
       method: 'post',
-      url: 'http://localhost:5000/listings',
+      url: LISTING_API_URL,
       headers: { 
         'Content-Type': 'application/json'
       },
