@@ -18,16 +18,19 @@ def data():
     if request.method == 'POST':
         body = request.json
         productName = body['productName']
+        productDescription = body['productDescription']
         rating = body['rating']
 
         db['listings'].insert_one({
             "productName": productName,
+            "productDescription": productDescription,
             "rating": rating
         })
 
         return jsonify({
             'status': 'Data is posted to MongoDB!',
             'productName': productName,
+            'productDescription': productDescription,
             'rating': rating
         })
 
@@ -37,30 +40,40 @@ def data():
         for data in allData:
             id = data['_id']
             productName = data['productName']
+            productDescription = data['productDescription']
             rating = data['rating']
             dataDict = {
                 'id': str(id),
                 'productName': productName,
+                'productDescription': productDescription,
                 'rating': rating
             }
             dataJson.append(dataDict)
         print(dataJson)
         return jsonify(dataJson)
 
-@app.route('/listings/<string:id>', methods=['GET'])
+
+@app.route('/listings/<string:id>', methods=['GET', 'DELETE'])
 def oneItem(id):
     if request.method == 'GET':
         data = db['listings'].find_one({'_id': ObjectId(id)})
         id = data['_id']
         productName = data['productName']
+        productDescription = data['productDescription']
         rating = data['rating']
         dataDict = {
             'id': str(id),
             'productName': productName,
+            'productDescription': productDescription,
             'rating': rating
         }
         print(dataDict)
         return jsonify(dataDict)
+
+    if request.method == 'DELETE':
+        db['listings'].delete_many({'_id': ObjectId(id)})
+        print('\n# Deletion successful # \n')
+        return jsonify({'status': 'Data id: ' + id + ' is deleted!'})
 
 @app.route('/')
 def index():

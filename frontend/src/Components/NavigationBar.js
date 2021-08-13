@@ -9,6 +9,7 @@ const NavigationBar = () => (
         <div className="nav-buttons">
             <div className="logo ltr"/>
             <Link className="link ltr" to="/">Home</Link>
+            <Link className="link ltr" to="/NewPostPage">New Post</Link>
             <div className="space"/>
             <Link className="link rtl" to="/login">Login</Link>
             <Link className="link rtl" to="/register">Register</Link>
