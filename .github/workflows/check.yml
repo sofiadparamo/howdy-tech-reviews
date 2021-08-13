@@ -34,9 +34,9 @@ jobs:
         run: pip install black flake8
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: cd frontend && npm ci
 
-      - name: Run python linters
+      - name: Run linters
         uses: wearerequired/lint-action@v1.10.0
         with: 
           black: true
