@@ -10,3 +10,12 @@ services:
       - example.env
     volumes:
       - ./backend:/howdy-tech-reviews
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+
