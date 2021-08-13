@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import ListingAPI from '../api'
 
 const NewPostPage = () => {
@@ -39,7 +39,7 @@ const NewPostPage = () => {
         />
         <br/><br/>
 
-        <label for="rating">Rating:</label><br/>
+        <label form="rating">Rating:</label><br/>
         <select onChange={(event) => setRating(event.target.value.trim())}>
           <option value="1">1 Star</option>
           <option value="2">2 Stars</option>
