@@ -41,7 +41,7 @@ jobs:
         with:
           black_dir: backend/
           flake8_dir: backend/
-          eslint_dir: frontend/
+          eslint_dir: frontend/**/*.js
           black: true
           flake8: true
           eslint: true
