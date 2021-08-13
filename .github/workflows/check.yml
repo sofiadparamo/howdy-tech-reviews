@@ -46,7 +46,3 @@ jobs:
           black: true
           flake8: true
           eslint: true
-
-      - name: Build and push with Docker
-        id: docker_build
-        uses: docker/build-push-action@v2
