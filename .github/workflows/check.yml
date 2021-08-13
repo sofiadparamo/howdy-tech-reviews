@@ -38,11 +38,11 @@ jobs:
 
       - name: Run linters
         uses: wearerequired/lint-action@v1.10.0
-        with: 
+        with:
+          black_dir: backend/
+          flake8_dir: backend/
+          eslint_dir: frontend/
+          eslint_extensions: js
           black: true
           flake8: true
           eslint: true
-
-      - name: Build and push with Docker
-        id: docker_build
-        uses: docker/build-push-action@v2
