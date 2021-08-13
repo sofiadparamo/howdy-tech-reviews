@@ -21,7 +21,7 @@ const NewPostPage = () => {
         <label>Product Name:</label><br/>
         <input 
           value={productName}
-          onChange={(event) => setName(event.target.value.trim())}
+          onChange={(event) => setName(event.target.value)}
           type="text"
           placeholder="Enter Product Name"
           required
@@ -31,7 +31,7 @@ const NewPostPage = () => {
         <label>Product Description:</label><br/>
         <textarea
           value={productDescription}
-          onChange={(event) => setDescription(event.target.value.trim())}
+          onChange={(event) => setDescription(event.target.value)}
           placeholder="Enter Description"
           type="text"
           rows="5"

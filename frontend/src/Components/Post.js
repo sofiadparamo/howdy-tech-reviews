@@ -16,6 +16,8 @@ const Post = (props) => {
   return(
     <div>
       <h1>{post.productName}</h1>
+      <h2>{post.rating} / 5 stars</h2>
+      <p>{post.productDescription}</p>
     </div>
   );
 }
