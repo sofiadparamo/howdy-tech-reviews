@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push: 
-    blanches:
+    branches:
       - main
   workflow_dispatch:
 

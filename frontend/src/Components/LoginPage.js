@@ -8,7 +8,7 @@ class LoginPage extends React.Component{
         let email = "";
         let password = "";
 
-        const handleSubmit = (ev) => {
+        const handleSubmit = () => {
             if(!validateForm())
                 return;
             console.log(email);
