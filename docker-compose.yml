@@ -28,7 +28,7 @@ services:
 
   nginx:
     container_name: nginx
-    image: jonalsal/nginx-certbot:latest
+    image: jonasal/nginx-certbot:latest
     restart: always
     env_file:
       - ./nginx-certbot.env
