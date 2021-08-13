@@ -21,6 +21,16 @@ services:
 
   frontend:
     container_name: frontend
+    restart: always
     build: ./frontend
     ports:
       - "3000:3000"
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
