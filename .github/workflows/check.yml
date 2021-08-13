@@ -38,10 +38,10 @@ jobs:
 
       - name: Run linters
         uses: wearerequired/lint-action@v1.10.0
-        black_dir: backend/
-        flake8_dir: backend/
-        eslint_dir: frontend/
-        with: 
+        with:
+          black_dir: backend/
+          flake8_dir: backend/
+          eslint_dir: frontend/
           black: true
           flake8: true
           eslint: true
