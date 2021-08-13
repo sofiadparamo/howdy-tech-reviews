@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 app = Flask(__name__)
-config = yaml.load(open('database.yml'),Loader=yaml.FullLoader)
+config = yaml.load(open('database.yml'), Loader=yaml.FullLoader)
 client = MongoClient(config['uri'])
 db = client['howdy-dev']
 CORS(app)
