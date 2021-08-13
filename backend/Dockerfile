@@ -6,6 +6,6 @@ WORKDIR /howdy-tech-reviews
 RUN pip3 install -r requirements.txt
 
 COPY . /howdy-tech-reviews
-
+EXPOSE 27017
 RUN chmod u+x ./entrypoint.sh
 ENTRYPOINT ["sh", "./entrypoint.sh"]
