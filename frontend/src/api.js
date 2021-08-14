@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const LISTING_API_URL = "/listings";
+const base_url = process.env.REACT_APP_APIURL
+
+const LISTING_API_URL = base_url + "/listings";
 
 class ListingAPI {
   all() {

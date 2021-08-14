@@ -7,7 +7,7 @@ services:
       - "5000:5000"
     restart: always
     env_file:
-      - example.env
+      - .env
     volumes:
       - ./backend:/howdy-tech-reviews
     depends_on:
@@ -23,8 +23,12 @@ services:
     container_name: frontend
     restart: always
     build: ./frontend
+    env_file:
+      - frontend/frontend.env
     ports:
       - "3000:3000"
+    links:
+      - backend
 
   nginx:
     container_name: nginx
