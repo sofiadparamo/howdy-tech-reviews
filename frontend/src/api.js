@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const LISTING_API_URL = "http://localhost:5000/listings";
+const base_url = process.env.REACT_APP_APIURL
+
+const LISTING_API_URL = base_url + "/listings";
 
 class ListingAPI {
   all() {
@@ -20,7 +22,7 @@ class ListingAPI {
 
     var config = {
       method: 'post',
-      url: 'http://localhost:5000/listings',
+      url: LISTING_API_URL,
       headers: { 
         'Content-Type': 'application/json'
       },

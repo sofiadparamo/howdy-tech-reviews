@@ -1,0 +1,50 @@
+version: "3"
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - "5000:5000"
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/howdy-tech-reviews
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+
+  frontend:
+    container_name: frontend
+    restart: always
+    build: ./frontend
+    env_file:
+      - frontend/frontend.env
+    ports:
+      - "3000:3000"
+    links:
+      - backend
+
+  nginx:
+    container_name: nginx
+    image: jonasal/nginx-certbot:latest
+    restart: always
+    env_file:
+      - ./nginx-certbot.env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - nginx_secrets:/etc/letsencrypt
+      - ./user_conf.d:/etc/nginx/user_conf.d
+    depends_on:
+      - backend
+      - frontend
+
+volumes:
+  nginx_secrets:
