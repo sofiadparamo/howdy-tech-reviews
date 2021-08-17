@@ -47,6 +47,14 @@ jobs:
           flake8: true
           eslint: true
           
-      - name: Build and push with Docker
-        id: docker_build
+      - name: Build Frontend Docker
+        id: docker_build_frontend
+        with:
+          context: backend/
+        uses: docker/build-push-action@v2
+        
+      - name: Build Frontend Docker
+        id: docker_build_backend
+        with:
+          context: frontend/
         uses: docker/build-push-action@v2
