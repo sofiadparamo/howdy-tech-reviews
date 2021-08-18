@@ -144,14 +144,7 @@ def one_opinion(item_id):
     if request.method == "GET":
         opinions_of_product = []
         product = db["opinions"].find({"_id": ObjectId(item_id)})
-
-        item_id = \
-            product_name = \
-            product_opinion = \
-            product_link = \
-            user = \
-            rating = []
-
+        item_id = product_name = product_opinion = product_link = user = rating = []
         for opinion in product:
             item_id.append(opinion["_id"])
             product_name.append(opinion["productName"])
