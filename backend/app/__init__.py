@@ -84,7 +84,8 @@ def one_item(item_id):
 def index():
     return "Works :)", 200
 
-#DB for the people opinions/posts
+
+# DB for the people opinions/posts
 @app.route("/opinion", methods=["POST", "GET"])
 def opinions_list():
     if request.method == "POST":
@@ -100,7 +101,7 @@ def opinions_list():
                 "productName": product_name,
                 "productOpinion": product_opinion,
                 "productLink": product_link,
-                "_user": user,
+                "_user": _user,
                 "rating": rating,
             }
         )
@@ -110,7 +111,7 @@ def opinions_list():
                 "productName": product_name,
                 "productOpinion": product_opinion,
                 "productLink": product_link,
-                "_user": user,
+                "_user": _user,
                 "rating": rating,
             }
         )
@@ -143,7 +144,14 @@ def one_opinion(item_id):
     if request.method == "GET":
         opinions_of_product = []
         product = db["opinions"].find({"_id": ObjectId(item_id)})
-        item_id = product_name = product_opinion = product_link = user = rating = []
+
+        item_id = \
+            product_name = \
+            product_opinion = \
+            product_link = \
+            user = \
+            rating = []
+
         for opinion in product:
             item_id.append(opinion["_id"])
             product_name.append(opinion["productName"])
@@ -163,8 +171,11 @@ def one_opinion(item_id):
             opinions_of_product.append(jsonify(data_dict))
         return opinions_of_product
 
+
 @app.route("/post/<item_id>", methods=["DELETE"])
 def del_post(item_id, user):
-    db["opinions"].delete_many({"_id": ObjectId(item_id),"_user": user})
+    db["opinions"].delete_many({"_id": ObjectId(item_id), "_user": user})
     print("\n# Deletion successful # \n")
-    return jsonify({"status": "Data id: " + item_id + "of user " + user + " is deleted!"})
+    return jsonify(
+        {"status": "Data id: " + item_id + "of user " + user + " is deleted!"}
+    )
