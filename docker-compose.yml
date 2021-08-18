@@ -16,6 +16,8 @@ services:
   mongodb:
     image: mongo
     restart: always
+    volumes:
+      - mongo_data:/data/db
     ports:
       - "27017:27017"
 
@@ -48,3 +50,4 @@ services:
 
 volumes:
   nginx_secrets:
+  mongo_data:
