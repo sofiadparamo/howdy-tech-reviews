@@ -10,8 +10,12 @@ load_dotenv()
 app = Flask(__name__)
 
 dashboard.config.init_from(file="config.cfg")
+
+
 def get_user_ip():
-    return request.environ['REMOTE_ADDR']
+    return request.environ["REMOTE_ADDR"]
+
+
 dashboard.config.group_by = get_user_ip
 dashboard.bind(app)
 
