@@ -4,9 +4,21 @@ from flask_cors import CORS
 import yaml
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
+import flask_monitoringdashboard as dashboard
 
 load_dotenv()
 app = Flask(__name__)
+
+dashboard.config.init_from(file="config.cfg")
+
+
+def get_user_ip():
+    return request.environ["REMOTE_ADDR"]
+
+
+dashboard.config.group_by = get_user_ip
+dashboard.bind(app)
+
 config = yaml.load(open("database.yml"), Loader=yaml.FullLoader)
 client = MongoClient(config["uri"])
 db = client["howdy-dev"]
