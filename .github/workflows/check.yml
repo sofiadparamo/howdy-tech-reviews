@@ -1,0 +1,60 @@
+name: Check
+
+on:
+  #push or pull for main branch
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install Python dependencies
+        run: pip install black flake8
+
+      - name: Install Node.js dependencies
+        run: cd frontend && npm ci
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v1.10.0
+        with:
+          black_dir: backend/
+          flake8_dir: backend/
+          eslint_dir: frontend/
+          eslint_extensions: js
+          black: true
+          flake8: true
+          eslint: true
+          
+      - name: Build Frontend Docker
+        id: docker_build_frontend
+        with:
+          context: backend/
+        uses: docker/build-push-action@v2
+        
+      - name: Build Frontend Docker
+        id: docker_build_backend
+        with:
+          context: frontend/
+        uses: docker/build-push-action@v2

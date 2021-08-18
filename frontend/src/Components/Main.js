@@ -5,6 +5,7 @@ import LoginPage from './LoginPage';
 import Post from './Post';
 import NewPostPage from './NewPostPage';
 
+
 //Renders the selected option
 const Main = () => (
   <main>
