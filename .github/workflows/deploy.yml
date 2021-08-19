@@ -39,3 +39,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Test Production Status
+        run: bash prod-test.sh
+
+      - name: Discord Notify Success
+        if: ${{ success() }}
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=Deployment Successful"
+
+      - name: Discord Notify Failure
+        if: ${{ failure() }}
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=Deployment Failed" 
+
