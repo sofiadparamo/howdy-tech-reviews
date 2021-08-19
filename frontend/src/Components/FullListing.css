@@ -1,0 +1,28 @@
+.listing-page{
+    max-width: 800px;
+    margin: 100px auto 0;
+    display: block;
+    font-family: "Roboto", sans-serif;
+}
+
+.product{
+    border: #7640ff solid 3px;
+    border-radius: 25px;
+    width: 100%;
+}
+
+.product-image{
+    margin-left: 3px;
+    border-radius: 25px;
+}
+
+h1{
+    text-decoration: none;
+    color: black;
+}
+
+.product-info h1{
+    margin-left: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
