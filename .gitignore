@@ -36,8 +36,8 @@ MANIFEST
 *.spec
 
 #Monitoring
-*.db
-*.cfg
+backend/*.db
+backend/*.cfg
 
 # Installer logs
 pip-log.txt
