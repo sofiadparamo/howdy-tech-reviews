@@ -62,6 +62,8 @@ services:
     container_name: prometheus
     image: prom/prometheus:latest
     restart: unless-stopped
+    ports: 
+    - 9090:9090
     command:
     - --config.file=/etc/prometheus/prometheus.yml
     volumes:
@@ -73,6 +75,8 @@ services:
     container_name: grafana
     image: grafana/grafana:latest
     restart: unless-stopped
+    ports: 
+      - 3000:3000
     volumes:
       - grafana_storage:/var/lib/grafana
     depends_on:
