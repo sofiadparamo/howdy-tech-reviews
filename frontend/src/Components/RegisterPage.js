@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginPage.css';
-
+import './RegisterPage.css';
 
 class LoginPage extends React.Component{
     constructor(props) {
@@ -10,21 +10,27 @@ class LoginPage extends React.Component{
             errorMsg: '',
             valid: false,
             username: '',
-            password: ''
+            password: '',
+            passwordConfirm: ''
         }
     }
 
     render() {
-
         const handleSubmit = () => {
             if(this.state.username.length === 0 ||
-                this.state.password.length === 0){
+                this.state.password.length === 0 ||
+                this.state.passwordConfirm.length === 0){
                 this.setState({
                     errorMsg: "You must fill all fields"
                 });
+            } else if(this.state.password !== this.state.passwordConfirm){
+                this.setState({
+                    errorMsg: "Passwords don't match"
+                })
             } else {
                 console.log(this.state.username);
                 console.log(this.state.password);
+                console.log(this.state.passwordConfirm);
             }
         }
 
@@ -40,11 +46,17 @@ class LoginPage extends React.Component{
             }, () => validateForm());
         }
 
+        const onPasswordChangeConfirmation = (ev) => {
+            this.setState({
+                    passwordConfirm: ev.target.value
+            }, () => validateForm());
+        }
+
         const validateForm = () => {
             this.setState({
                     errorMsg: ""
             })
-            if(this.state.username.length > 0 && this.state.password.length > 0){
+            if(this.state.username.length > 0 && this.state.password.length > 0 && this.state.passwordConfirm.length > 0){
                 this.setState({
                     valid: true
                 })
@@ -65,13 +77,15 @@ class LoginPage extends React.Component{
                     <div className="logo"/>
                     <div className="head-container">
                         <div className="line"/>
-                        <h1>Login</h1>
+                        <h1>Register</h1>
                         <div className="line"/>
                     </div>
                     <form>
                         <input type="text" id="username" name="username" placeholder="Username" onChange={onUsernameChange}>
                         </input>
                         <input type="password" id="password" name="password" placeholder="Password" onChange={onPasswordChange}>
+                        </input>
+                        <input type="password" id="password-confirmation" name="password-confirmation" placeholder="Confirm Password" onChange={onPasswordChangeConfirmation}>
                         </input>
                         <button type="button" onClick={handleSubmit} className={this.state.valid ? 'valid' : 'invalid'}>Enter</button>
                     </form>
