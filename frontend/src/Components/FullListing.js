@@ -32,6 +32,7 @@ const FullListing = () => {
                     <h1>{p.productName}</h1>
                       <Rating
                       name='read-only'
+                      precision={0.5}
                       value={p.rating}
                       readOnly
                       size="large"
