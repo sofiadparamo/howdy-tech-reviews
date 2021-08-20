@@ -3,8 +3,9 @@ import axios from 'axios'
 const base_url = process.env.REACT_APP_APIURL
 
 const LISTING_API_URL = base_url + "/listings";
+const LOGIN_API_URL = base_url + "/api/";
 
-class ListingAPI {
+class API {
   all() {
     return axios.get(LISTING_API_URL);
   }
@@ -14,13 +15,13 @@ class ListingAPI {
   }
 
   post(productName, productDescription, rating) {
-    var data = JSON.stringify({
+    const data = JSON.stringify({
       "productName": productName,
       "productDescription": productDescription,
       "rating": rating
     });
 
-    var config = {
+    const config = {
       method: 'post',
       url: LISTING_API_URL,
       headers: { 
@@ -37,7 +38,60 @@ class ListingAPI {
       console.log(error);
     });
   }
+
+  login(username, password) {
+    const data = {
+      "username": username,
+      "password": password
+    }
+
+    const config = {
+      method: 'post',
+      url: LOGIN_API_URL+'login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    return axios(config)
+  }
+
+  register(username, password) {
+    const data = {
+      "username": username,
+      "password": password
+    }
+
+    const config = {
+      method: 'post',
+      url: LOGIN_API_URL+'register',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    return axios(config)
+  }
+
+  session(token) {
+    const data = {
+      "token": token
+    }
+
+    const config = {
+      method: 'post',
+      url: LOGIN_API_URL+'session',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    return axios(config)
+  }
 }
 
-const ListingsAPI = new ListingAPI();
-export default ListingsAPI
+const SiteAPI = new API();
+export default SiteAPI

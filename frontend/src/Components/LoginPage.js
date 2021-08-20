@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginPage.css';
-
+import SiteAPI from '../api.js'
 
 class LoginPage extends React.Component{
     constructor(props) {
@@ -10,7 +10,8 @@ class LoginPage extends React.Component{
             errorMsg: '',
             valid: false,
             username: '',
-            password: ''
+            password: '',
+            registration: this.props.location.search.length > 0
         }
     }
 
@@ -23,8 +24,17 @@ class LoginPage extends React.Component{
                     errorMsg: "You must fill all fields"
                 });
             } else {
-                console.log(this.state.username);
-                console.log(this.state.password);
+                SiteAPI.login(this.state.username, this.state.password)
+                .then((response) => {
+                  if(response.data.status === "error"){
+                      this.setState({
+                              errorMsg: response.data.message
+                      })
+                  } else if(response.data.status === "success"){
+                      localStorage.setItem("token",response.data.token)
+                      window.location.replace("/");
+                  }
+                })
             }
         }
 
@@ -61,6 +71,9 @@ class LoginPage extends React.Component{
                 <div className="login-box">
                     { this.state.errorMsg.length > 0 &&
                         <h1 className={'error-message'}>{this.state.errorMsg}</h1>
+                    }
+                    { this.state.registration &&
+                        <h1 className={'info-message'}>Registered successfully, please login</h1>
                     }
                     <div className="logo"/>
                     <div className="head-container">

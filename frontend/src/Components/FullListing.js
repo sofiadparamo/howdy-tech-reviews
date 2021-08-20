@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from "styled-components"
 import './App.css'
-import ListingAPI from '../api'
+import SiteAPI from '../api'
 import './FullListing.css'
 import Rating from '@material-ui/lab/Rating';
 
 const FullListing = () => {
   const [listings, setListings] = useState([]);
   useEffect(() => {
-    ListingAPI.all()
+    SiteAPI.all()
         .then(response => {
           setListings(response.data);
         })
@@ -33,7 +33,7 @@ const FullListing = () => {
                       <Rating
                       name='read-only'
                       precision={0.5}
-                      value={p.rating}
+                      value={p.rating ? p.rating : 0}
                       readOnly
                       size="large"
                       />

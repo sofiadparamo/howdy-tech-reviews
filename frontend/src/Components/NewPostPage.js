@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ListingAPI from '../api'
+import SiteAPI from '../api'
 import './NewPostPage.css'
 import {Rating} from "@material-ui/lab";
 
@@ -13,7 +13,7 @@ const NewPostPage = () => {
     if(productName === "" || productDescription === "" || rating === 0) {
       return ;
     }
-    ListingAPI.post(productName, productDescription, rating);
+    SiteAPI.post(productName, productDescription, rating);
   };
 
   return(

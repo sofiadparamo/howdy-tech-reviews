@@ -1,6 +1,7 @@
 import React from 'react';
 import './LoginPage.css';
 import './RegisterPage.css';
+import SiteAPI from "../api";
 
 class LoginPage extends React.Component{
     constructor(props) {
@@ -28,9 +29,17 @@ class LoginPage extends React.Component{
                     errorMsg: "Passwords don't match"
                 })
             } else {
-                console.log(this.state.username);
-                console.log(this.state.password);
-                console.log(this.state.passwordConfirm);
+                SiteAPI.register(this.state.username, this.state.password)
+                .then((response) => {
+                    console.log(response.data)
+                  if(response.data.status === "error"){
+                      this.setState({
+                          errorMsg: response.data.message
+                      })
+                  } else if(response.data.status === "success"){
+                      window.location.replace("/login?ref");
+                  }
+                })
             }
         }
 

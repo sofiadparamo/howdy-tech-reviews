@@ -1,5 +1,4 @@
-from datetime import datetime
-
+import datetime
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from flask_cors import CORS
@@ -118,7 +117,7 @@ def register():
             {"username": username, "password": generate_password_hash(password)}
         )
 
-        return jsonify({"status": "Success!"})
+        return jsonify({"status": "success"})
     except KeyError:
         return jsonify({"status": "error", "message": "Required fields not provided"})
 
@@ -153,18 +152,20 @@ def login():
         )
 
     token = jwt.encode(
-        {"exp": datetime.utcnow(), "username": username},
+        {"exp": datetime.datetime.utcnow() + datetime.timedelta(days=1), "username": username},
         "TOKEN_SEED",
         algorithm="HS256",
     )
     return jsonify({"status": "success", "token": token})
 
 
-@app.route("/api/session", methods=["GET"])
+@app.route("/api/session", methods=["POST"])
 def session():
     try:
         body = request.get_json()
         token = body["token"]
+        if not token:
+            return jsonify({"status": "not logged in"})
         username = jwt.decode(token, "TOKEN_SEED", algorithms="HS256")
         return jsonify({"status": "logged in", "username": username})
     except KeyError:
