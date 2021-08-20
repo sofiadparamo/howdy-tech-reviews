@@ -104,7 +104,9 @@ def register():
         password = body["password"]
 
         if not username or not password:
-            return jsonify({"status": "error", "message": "Required fields not provided"})
+            return jsonify(
+                {"status": "error", "message": "Required fields not provided"}
+            )
 
         user_list = db["users"]
 
@@ -112,7 +114,9 @@ def register():
         if user_from_db:
             return jsonify({"status": "error", "message": "Username taken"})
 
-        user_list.insert_one({"username": username, "password": generate_password_hash(password)})
+        user_list.insert_one(
+            {"username": username, "password": generate_password_hash(password)}
+        )
 
         return jsonify({"status": "Success!"})
     except KeyError:
@@ -133,12 +137,26 @@ def login():
     user = user_list.find_one({"username": username})
 
     if not user:
-        return jsonify({"status": "error", "message": "The username and password combination is wrong"})
+        return jsonify(
+            {
+                "status": "error",
+                "message": "The username and password combination is wrong",
+            }
+        )
 
     if not check_password_hash(user["password"], password):
-        return jsonify({"status": "error", "message": "The username and password combination is wrong"})
+        return jsonify(
+            {
+                "status": "error",
+                "message": "The username and password combination is wrong",
+            }
+        )
 
-    token = jwt.encode({"exp": datetime.utcnow(), "username": username}, "TOKEN_SEED", algorithm="HS256")
+    token = jwt.encode(
+        {"exp": datetime.utcnow(), "username": username},
+        "TOKEN_SEED",
+        algorithm="HS256",
+    )
     return jsonify({"status": "success", "token": token})
 
 
