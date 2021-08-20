@@ -152,7 +152,10 @@ def login():
         )
 
     token = jwt.encode(
-        {"exp": datetime.datetime.utcnow() + datetime.timedelta(days=1), "username": username},
+        {
+            "exp": datetime.datetime.utcnow() + datetime.timedelta(days=1),
+            "username": username,
+        },
         "TOKEN_SEED",
         algorithm="HS256",
     )
