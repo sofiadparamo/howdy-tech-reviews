@@ -43,6 +43,7 @@ jobs:
           flake8_dir: backend/
           eslint_dir: frontend/
           eslint_extensions: js
+          flake8_args: --ignore=E501
           black: true
           flake8: true
           eslint: true
