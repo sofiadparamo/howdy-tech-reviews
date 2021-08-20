@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import styled from "styled-components"
 import './App.css'
 import ListingAPI from '../api'
+import './FullListing.css'
+import Rating from '@material-ui/lab/Rating';
 
 const FullListing = () => {
   const [listings, setListings] = useState([]);
@@ -17,26 +19,32 @@ const FullListing = () => {
     }, []);
 
   return(
-    <div>
-      <ul>
+    <div className={'listing-page'}>
+      <h1>Latest Reviews</h1>
+
         {
           listings.length > 0 ? (
             listings.map(p => (
-              <li key={p.id}>
+              <div key={p.id} className={'product'}>
                 <NavLink to={`/listing/${p.id}`}>
-                  <img src="https://via.placeholder.com/112" width="112" height="112" alt="product"/>
-                  <div>
+                  <img src="https://via.placeholder.com/100" width="100" height="100" alt="product" className={'product-image'}/>
+                  <div className={'product-info'}>
                     <h1>{p.productName}</h1>
-                    <h2>Avg Rating: {p.rating}/5 stars</h2>
+                      <Rating
+                      name='read-only'
+                      precision={0.5}
+                      value={p.rating}
+                      readOnly
+                      size="large"
+                      />
                   </div>
                 </NavLink>
-              </li>
+              </div>
             ))
           ) : (
             <div>No Posts!</div>
           )
         }
-      </ul>
     </div>
   );
 }

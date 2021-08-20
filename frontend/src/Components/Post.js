@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ListingAPI from '../api'
+import './Post.css'
+import Rating from "@material-ui/lab/Rating";
 
 const Post = (props) => {
   const [post, setPost] = useState([]);
@@ -14,10 +16,20 @@ const Post = (props) => {
   }, []);
 
   return(
-    <div>
-      <h1>{post.productName}</h1>
-      <h2>{post.rating} / 5 stars</h2>
-      <p>{post.productDescription}</p>
+    <div className={'post-page'}>
+        <h1>{post.productName}</h1>
+        <div className={'rating-container'}>
+            <h2>Avg. rating:</h2>
+            <Rating
+              name='read-only'
+              value={post.rating}
+              precision={0.5}
+              readOnly
+              size="large"
+              className={'rating'}
+            />
+        </div>
+        <p>{post.productDescription}</p>
     </div>
   );
 }

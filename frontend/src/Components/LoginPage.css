@@ -89,3 +89,11 @@
     background-color: #b5a1ff;
     cursor: not-allowed;
 }
+
+.error-message {
+    border: #ff383b solid 3px;
+    border-radius: 10px;
+    background: #ff6164;
+    font-weight: lighter;
+    color: white;
+}
