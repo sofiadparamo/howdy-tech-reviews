@@ -97,3 +97,11 @@
     font-weight: lighter;
     color: white;
 }
+
+.info-message {
+    border: #0eb400 solid 3px;
+    border-radius: 10px;
+    background: #a5ff87;
+    font-weight: lighter;
+    color: white;
+}

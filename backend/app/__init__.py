@@ -1,10 +1,13 @@
+import datetime
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from flask_cors import CORS
 import yaml
+import jwt
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import flask_monitoringdashboard as dashboard
+from werkzeug.security import check_password_hash, generate_password_hash
 
 load_dotenv()
 app = Flask(__name__)
@@ -90,6 +93,88 @@ def one_item(item_id):
         db["listings"].delete_many({"_id": ObjectId(item_id)})
         print("\n# Deletion successful # \n")
         return jsonify({"status": "Data id: " + item_id + " is deleted!"})
+
+
+@app.route("/api/register", methods=["POST"])
+def register():
+    try:
+        body = request.get_json()
+        username = body["username"]
+        password = body["password"]
+
+        if not username or not password:
+            return jsonify(
+                {"status": "error", "message": "Required fields not provided"}
+            )
+
+        user_list = db["users"]
+
+        user_from_db = user_list.find_one({"username": username})
+        if user_from_db:
+            return jsonify({"status": "error", "message": "Username taken"})
+
+        user_list.insert_one(
+            {"username": username, "password": generate_password_hash(password)}
+        )
+
+        return jsonify({"status": "success"})
+    except KeyError:
+        return jsonify({"status": "error", "message": "Required fields not provided"})
+
+
+@app.route("/api/login", methods=["POST"])
+def login():
+    body = request.get_json()
+    username = body["username"]
+    password = body["password"]
+
+    if not username or not password:
+        return jsonify({"status": "error", "message": "Required fields not provided"})
+
+    user_list = db["users"]
+
+    user = user_list.find_one({"username": username})
+
+    if not user:
+        return jsonify(
+            {
+                "status": "error",
+                "message": "The username and password combination is wrong",
+            }
+        )
+
+    if not check_password_hash(user["password"], password):
+        return jsonify(
+            {
+                "status": "error",
+                "message": "The username and password combination is wrong",
+            }
+        )
+
+    token = jwt.encode(
+        {
+            "exp": datetime.datetime.utcnow() + datetime.timedelta(days=1),
+            "username": username,
+        },
+        "TOKEN_SEED",
+        algorithm="HS256",
+    )
+    return jsonify({"status": "success", "token": token})
+
+
+@app.route("/api/session", methods=["POST"])
+def session():
+    try:
+        body = request.get_json()
+        token = body["token"]
+        if not token:
+            return jsonify({"status": "not logged in"})
+        username = jwt.decode(token, "TOKEN_SEED", algorithms="HS256")
+        return jsonify({"status": "logged in", "username": username})
+    except KeyError:
+        return jsonify({"status": "not logged in"})
+    except jwt.ExpiredSignatureError:
+        return jsonify({"status": "session expired"})
 
 
 @app.route("/")
