@@ -1,0 +1,20 @@
+.post-page{
+    max-width: 800px;
+    margin: 100px auto 0;
+    display: block;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.post-page h1{
+    font-size: 40pt;
+}
+
+.rating-container h2{
+    float: left;
+    margin: 2px 5px;
+}
+
+.rating {
+    float: left;
+}
