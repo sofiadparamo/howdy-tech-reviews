@@ -1,7 +1,7 @@
 name: Check
 
 on:
-  #push or pull for main branch
+  #push or pull for main & dev branch
   push:
     branches:
       - main
